@@ -1,37 +1,70 @@
-def rectangle_area(width, height):
-    area = width * height
-    return area
+import math
+def main():
+    print("Инженерный калькулятор")
+    while True:
+        print("Доступные операции:")
+        print("1. Сложение")
+        print("2. Вычитание")
+        print("3. Умножение")
+        print("4. Деление")
+        print("5. Возведение в степень")
+        print("6. Квадратный корень")
+        print("7. Факториал")
+        print("8. Синус")
+        print("9. Косинус")
+        print("10. Тангенс")
+        print("11. Выход")
 
-width = int(input())
-height = int(input())
-area = rectangle_area(width, height)
-print("Площадь прямоугольника:", area)
+        choice = input("Выберите операцию (1/2/3/4/5/6/7/8/9/10/11): ")
 
-def is_even(number):
-    if number % 2 == 0:
-        return True
-    else:
-        return False
+        if choice == '11':
+            print("Пока.")
+            break
 
-number = int(input())
-result = is_even(number)
-if result:
-    print(number, "является четным числом.")
-else:
-    print(number, "является нечетным числом.")
+        if choice not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'):
+            print("только с 1 до 11, дальше пути нет")
+            continue
+
+        if choice in ('1', '2', '3', '4', '5'):
+            try:
+                num1 = float(input("Введите первое число: "))
+                num2 = float(input("Введите второе число: "))
+            except ValueError:
+                print("ЧИСЛА ВВОДИ!!!")
+                continue
+
+        if choice == '1':
+            result = num1 + num2
+        elif choice == '2':
+            result = num1 - num2
+        elif choice == '3':
+            result = num1 * num2
+        elif choice == '4':
+            if num2 == 0:
+                print("Ошибка: деление на ноль")
+                continue
+            result = num1 / num2
+        elif choice == '5':
+            result = num1 ** num2
+        elif choice == '6':
+            if num1 < 0:
+                print("Ошибка: нельзя извлекать корень из отрицательного числа")
+                continue
+            result = math.sqrt(num1)
+        elif choice == '7':
+            if num1 < 0:
+                print("Ошибка: факториал определен только для неотрицательных целых чисел")
+                continue
+            result = math.factorial(int(num1))
+        elif choice == '8':
+            result = math.sin(num1)
+        elif choice == '9':
+            result = math.cos(num1)
+        elif choice == '10':
+            result = math.tan(num1)
+
+        print("Результат: {}".format(result))
 
 
-    def sum_digits(number):
-        total = 0
-
-        number_str = str(number)
-
-        for digit_str in number_str:
-            digit = int(digit_str)
-            total += digit
-
-        return total
-
-    number = int(input())
-    result = sum_digits(number)
-    print("Сумма цифр числа", number, "равна", result)
+if __name__ == "__main__":
+    main()
